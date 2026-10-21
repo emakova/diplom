@@ -22,7 +22,7 @@
 .header-logo-title {
   font-size: 22px;
   font-weight: 800;
-  color:#ffb649;
+  color:#facc15;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -56,7 +56,7 @@
   color: #0f172a;
 }
  
-/* Активный пункт (Home) */
+/* Активный пункт (Главная) */
 .header-nav-item--active {
   color: #0f172a;
   font-weight: 700;
@@ -83,7 +83,7 @@
 .header-btn {
   padding: 12px 24px;
   margin-left: 15px;
-  background-color: #ffb649; 
+  background-color: #facc15; 
   color: #0f172a;
   border: none;
   border-radius: 30px;
@@ -95,7 +95,7 @@
 }
  
 .header-btn:hover {
-  background-color: #f8a324; /* Темнее желтый */
+  background-color: #facc15; /* Темнее желтый */
   transform: translateY(-2px);
 }
  
