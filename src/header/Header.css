@@ -103,10 +103,10 @@
   transform: translateY(0);
 }
  
-/* Адаптивность для мобильных */
+/* Адаптивность для звонильников */
 @media (max-width: 700px) {
   .header-nav {
-    display: none; /* Скрываем меню на маленьких экранах */
+    display: none; /* Скипаем меню на маленьких экранах */
   }
   .header {
     padding: 15px 20px;

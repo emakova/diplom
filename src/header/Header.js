@@ -11,8 +11,11 @@ const Header = ({setCurrentPage}) => {
 	// Обработчик клика по пункту меню
   const  handleNavClick=(item)=>{
 		setActiveItem(item);
-
-	if (item === "Статьи"){
+	if(item === "Авиабилеты"){
+		setCurrentPage('tickets')
+		//переключаем на страницу авиабилетов
+	}
+	else if (item === "Статьи"){
 		setCurrentPage('articles')
 		//переключаем на страницу статей
 	}else{
@@ -41,10 +44,7 @@ const Header = ({setCurrentPage}) => {
 				))}
 			</ul>
 
-			{/* кнопка */}
-			<div className='header-actions'>
-				<button className='header-btn'>Старт</button>
-			</div>
+			
 		</header>
 	)
 }
