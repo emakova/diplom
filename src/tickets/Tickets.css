@@ -134,6 +134,9 @@
 /* === Карусель стран === */
 .carousel {
   margin-top: 40px;
+  overflow: hidden;
+  /* скрываем то что выходит за рамки */
+ 
 }
  
 .carousel__title {
@@ -146,19 +149,19 @@
 .carousel__track {
   display: flex;
   gap: 20px;
-  overflow-x: auto; /* Горизонтальный скролл */
+  width: max-content;
+  animation: scroll 30s linear infinite;
+  /* анимация */
+  will-change: transform;
   padding-bottom: 20px;
-  scroll-snap-type: x mandatory; /* Прилипание при скролле */
+  
+}
+
+.carousel__track:hover{
+  animation-play-state: paused;
+  /* пауза при наведении */
 }
  
-/* Стилизация скроллбара (опционально) */
-.carousel__track::-webkit-scrollbar {
-  height: 8px;
-}
-.carousel__track::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
-  border-radius: 10px;
-}
  
 .carousel__item {
   flex: 0 0 300px; /* Фиксированная ширина карточки */
@@ -191,6 +194,16 @@
   color: white;
   font-size: 18px;
   font-weight: 700;
+}
+
+@keyframes scroll{
+  0%{
+transform: translateX(0);
+  }
+  100%{
+transform: translateX(-50%);
+/* сдвигаем ровно на ширину одной копии на середину ленты */
+  }
 }
  
 /* Адаптивность для звонильников */

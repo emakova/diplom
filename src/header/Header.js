@@ -11,13 +11,15 @@ const Header = ({setCurrentPage}) => {
 	// Обработчик клика по пункту меню
   const  handleNavClick=(item)=>{
 		setActiveItem(item);
-	if(item === "Авиабилеты"){
+	if (item === 'Авиабилеты') {
 		setCurrentPage('tickets')
 		//переключаем на страницу авиабилетов
-	}
-	else if (item === "Статьи"){
+	} else if (item === 'Статьи') {
 		setCurrentPage('articles')
 		//переключаем на страницу статей
+	} else if (item === 'Жилье') {
+		setCurrentPage('housing')
+		//переключаем на страницу жилья
 	}else{
 		setCurrentPage('main')
 		//возвращаем на главную

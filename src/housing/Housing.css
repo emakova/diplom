@@ -1,0 +1,241 @@
+/* === СТРАНИЦА СПИСКА ЖИЛЬЯ === */
+.housing-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+ 
+.housing-page__title {
+  text-align: center;
+  font-size: 32px;
+  color: #c60014;
+  margin-bottom: 30px;
+}
+ 
+/* Форма поиска */
+.housing-search {
+  display: flex;
+  gap: 15px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  margin-bottom: 40px;
+}
+ 
+.housing-search__input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+ 
+.housing-search__input:focus {
+  border-color: #facc15;
+}
+ 
+.housing-search__btn {
+  padding: 12px 30px;
+  background-color: #facc15;
+  color: #0f172a;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+ 
+.housing-search__btn:hover {
+  background-color: #eab308;
+}
+ 
+/* Карточки объявлений */
+.housing-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+ 
+.housing-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+ 
+.housing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+ 
+.housing-card__img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+ 
+.housing-card__content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+ 
+.housing-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #c60014;
+  margin-bottom: 5px;
+}
+ 
+.housing-card__location {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 15px;
+}
+ 
+.housing-card__desc {
+  font-size: 14px;
+  color: #334155;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  flex-grow: 1; /* Прижимает футер вниз */
+}
+ 
+/* Футер карточки (автор и цена) */
+.housing-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 15px;
+  border-top: 1px solid #f1f5f9;
+}
+ 
+.housing-card__author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ff4154;
+}
+ 
+.avatar-small {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+ 
+.housing-card__price {
+  font-size: 18px;
+  font-weight: 800;
+  color: #facc15;
+}
+ 
+.housing-card__price--free {
+  color: #22c55e; /* Зеленый для бесплатно */
+  font-size: 16px;
+  text-transform: uppercase;
+}
+ 
+/* === ДЕТАЛЬНАЯ СТРАНИЦА === */
+.housing-details {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+ 
+.housing-details__back {
+  background: transparent;
+  border: none;
+  color: #3b82f6;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+ 
+.housing-details__title {
+  font-size: 32px;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+ 
+.housing-details__location {
+  font-size: 18px;
+  color: #64748b;
+  margin-bottom: 30px;
+}
+ 
+/* Галерея фотографий */
+.housing-details__gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+ 
+.housing-details__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ 
+.housing-details__img--main {
+  grid-row: span 2;
+}
+ 
+.housing-details__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+ 
+.housing-details__description {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #334155;
+}
+ 
+.housing-details__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 12px;
+  margin-top: 20px;
+}
+ 
+.housing-details__author {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+ 
+.avatar-large {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+ 
+.housing-details__price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #facc15;
+}

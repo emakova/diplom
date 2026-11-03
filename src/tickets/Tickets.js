@@ -49,6 +49,9 @@ const Tickets = () => {
 		},
 	]
 
+	const duplicatedCountries = [...carouselCountries,...carouselCountries];
+	//дублирование карусели. создаем для того чтоб зациклить нашу карусель ниже
+
 	//  Обработчик изменения полей 
 	const handleChange = (e) => {
 		const { name, value } = e.target
@@ -90,6 +93,38 @@ const Tickets = () => {
 				date: searchData.dateDeparture,
 				route: `${searchData.from} → ${searchData.to}`,
 				price: 9800,
+			},
+			{
+				id: 4,
+				airline: 'Россия',
+				time: '17:12 - 00:50',
+				date: searchData.dateDeparture,
+				route: `${searchData.from} → ${searchData.to}`,
+				price: 9800,
+			},
+			{
+				id: 5,
+				airline: 'S7 Airlines',
+				time: '14:00 - 18:35',
+				date: searchData.dateDeparture,
+				route: `${searchData.from} → ${searchData.to}`,
+				price: 12335,
+			},
+			{
+				id: 6,
+				airline: 'AzurAir',
+				time: '11:30 - 23:40',
+				date: searchData.dateDeparture,
+				route: `${searchData.from} → ${searchData.to}`,
+				price: 14550,
+			},
+			{
+				id: 7,
+				airline: 'Aeroflot',
+				time: '19:50 - 1:35',
+				date: searchData.dateDeparture,
+				route: `${searchData.from} → ${searchData.to}`,
+				price: 11300,
 			},
 		]
 
@@ -226,8 +261,8 @@ const Tickets = () => {
 			<div className='carousel'>
 				<h2 className='carousel__title'>Популярные направления</h2>
 				<div className='carousel__track'>
-					{carouselCountries.map((item) => (
-						<div key={item.id} className='carousel__item'>
+					{duplicatedCountries.map((item,index) => (
+						<div key={`${item.id}-${index}`} className='carousel__item'>
 							<img
 								src={item.image}
 								alt={item.city}
