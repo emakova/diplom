@@ -3,7 +3,7 @@ import './Header.css'
 
 const Header = ({setCurrentPage}) => {
 	// Массив пунктов меню (как на фото)
-	const navItems = ['Главная', 'Авиабилеты', 'Друзья', 'Жилье', 'Статьи'];
+	const navItems = ['Главная', 'Авиабилеты',  'Жилье', 'Статьи'];
 
 	// Состояние для активного пункта меню
 	const [activeItem, setActiveItem] = useState('Главная');

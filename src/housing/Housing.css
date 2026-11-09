@@ -239,3 +239,88 @@
   font-weight: 800;
   color: #facc15;
 }
+
+/* === Форма добавления жилья === */
+.add-housing-form {
+  background: #ffc1c7;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-top: 40px;
+}
+ 
+.add-housing-form__title {
+  font-size: 24px;
+  color: #c60014;
+  margin-bottom: 20px;
+}
+ 
+.add-housing-form__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+ 
+.add-housing-form__full {
+  grid-column: span 2;
+}
+ 
+.add-housing-form__group {
+  display: flex;
+  flex-direction: column;
+}
+ 
+.add-housing-form__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 5px;
+}
+ 
+.add-housing-form__input,
+.add-housing-form__textarea,
+.add-housing-form__file {
+  padding: 10px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+ 
+.add-housing-form__input:focus,
+.add-housing-form__textarea:focus {
+  border-color: #facc15;
+}
+ 
+.add-housing-form__textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+ 
+.add-housing-form__btn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: #facc15; 
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+ 
+.add-housing-form__btn:hover {
+  background-color: #eab308;
+}
+ 
+/* Адаптив для формы */
+@media (max-width: 768px) {
+  .add-housing-form__grid {
+    grid-template-columns: 1fr;
+  }
+  .add-housing-form__full {
+    grid-column: span 1;
+  }
+}

@@ -13,7 +13,7 @@ const HousingPage = ({ housing, onBack }) => {
 				{housing.country}, {housing.city}
 			</div>
 
-			{/* Галерея (1 большая + 2 маленькие картинки) */}
+			{/* Галерея (1 большая + 1 маленькая картинкa) */}
 			<div className='housing-details__gallery'>
 				<img
 					src={housing.images[0]}
@@ -27,13 +27,7 @@ const HousingPage = ({ housing, onBack }) => {
 						className='housing-details__img'
 					/>
 				)}
-				{housing.images[2] && (
-					<img
-						src={housing.images[2]}
-						alt='Фото 3'
-						className='housing-details__img'
-					/>
-				)}
+				
 			</div>
 
 			<div className='housing-details__info'>
@@ -52,6 +46,15 @@ const HousingPage = ({ housing, onBack }) => {
 							</div>
 							<div style={{ fontSize: '14px', color: '#64748b' }}>
 								Хозяин жилья
+							</div>
+							<div
+								style={{
+									marginTop: '5px',
+									fontWeight: '600',
+									color: '#ff4154',
+								}}
+							>
+								{housing.phone}
 							</div>
 						</div>
 					</div>

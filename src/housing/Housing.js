@@ -10,21 +10,32 @@ const Housing = ({ onSelectHousing }) => {
 	const [searchCity, setSearchCity] = useState('')
 	const [hasSearched, setHasSearched] = useState(false)
 
+	//  Состояния для формы добавления
+	const [newHousing, setNewHousing] = useState({
+		title: '',
+		country: '',
+		city: '',
+		description: '',
+		price: '',
+		phone: '',
+		image: '', // Здесь будет храниться картинка как обыная url
+	})
 	// Изначальные данные (в реальности приходят с сервера)
-	const allHousings = [
+
+	const [allHousings, setAllHousings] = useState([
 		{
 			id: 1,
 			title: 'Уютная студия в центре Рима',
 			country: 'Италия',
 			city: 'Рим',
 			description:
-				'Отличное место для  одной девушки или двух подруг. Есть Wi-Fi, кухня и балкон с видом на улицу. 5 минут пешком до Колизея. +7 983 282 17 15',
+				'Отличное место для пары. Есть Wi-Fi, кухня и балкон с видом на улицу. 5 минут пешком до Колизея.',
 			price: '4500 ₽ / месяц',
+			phone: '+7 999 123-45-67',
 			author: { name: 'Мария', avatar: defaultAvatar },
 			images: [
-				'https://i.pinimg.com/1200x/e1/45/f3/e145f397459447cd80dfd7ed86eda50e.jpg',
-				'https://i.pinimg.com/1200x/18/12/94/18129475739d6d85e9cbcb831d1126aa.jpg',
-				'https://i.pinimg.com/736x/36/fb/fa/36fbfac3b51733017ce02a1f62dab4f9.jpg',
+				'https://i.pinimg.com/1200x/29/a0/c0/29a0c0989d6f58052958743671552e43.jpg',
+				'https://i.pinimg.com/1200x/9c/a4/f3/9ca4f372464d753234401abbb37d33cb.jpg'
 			],
 		},
 		{
@@ -33,29 +44,16 @@ const Housing = ({ onSelectHousing }) => {
 			country: 'Япония',
 			city: 'Токио',
 			description:
-				'Ищу соседку по хостелу. Условия спартанские, но зато бесплатно! Есть общая кухня и душ. +1 999 748 11',
+				'Ищу соседа по хостелу. Условия спартанские, но зато бесплатно! Есть общая кухня и душ.',
 			price: 'FREE',
-			author: { name: 'Ли Мэй', avatar: defaultAvatar },
+			phone: '+81 90 1234 5678',
+			author: { name: 'Кенджи', avatar: defaultAvatar },
 			images: [
 				'https://i.pinimg.com/736x/69/ff/06/69ff062101a285a495c4cdd02cefa2dc.jpg',
-				'https://i.pinimg.com/1200x/a0/e7/19/a0e7199745c32d390c20a83ad3af6bc2.jpg',
+				'https://i.pinimg.com/1200x/a9/9f/a5/a99fa5899452aa68c8bb61b59e201b0f.jpg',
 			],
 		},
-		{
-			id: 3,
-			title: 'Апартаменты с видом на море',
-			country: 'Грузия',
-			city: 'Батуми',
-			description:
-				'Просторные апартаменты на берегу. 2 спальни, большая терраса. Идеально для двоих человек. жду отклик) +7 999 345 34 57 ',
-			price: '10000 ₽ / месяц',
-			author: { name: 'Оливия', avatar: defaultAvatar },
-			images: [
-				'https://i.pinimg.com/736x/01/48/9b/01489b89c9adb4ad0970b05bc204e59c.jpg',
-				'https://i.pinimg.com/736x/96/7e/6a/967e6a610fff2afe290ed239c51a54ef.jpg',
-			],
-		},
-	]
+	])
 
 	// Фильтрация объявлений
 	const filteredHousings = allHousings.filter((item) => {
@@ -70,6 +68,68 @@ const Housing = ({ onSelectHousing }) => {
 		e.preventDefault()
 		setHasSearched(true)
 	}
+
+	const handleFormChange = (e) => {
+		const { name, value } = e.target
+		setNewHousing({ ...newHousing, [name]: value })
+	}
+
+	// обработчик фото
+	const handleImageChange = (e) => {
+		const file = e.target.files[0]
+		if (file) {
+			// URL.createObjectURL создает быструю локальную ссылку на файл
+			const imageUrl = URL.createObjectURL(file)
+			setNewHousing({ ...newHousing, image: imageUrl })
+		}
+	}
+
+	const handleAddHousing = (e) => {
+		e.preventDefault()
+
+		if (
+			!newHousing.title ||
+			!newHousing.country ||
+			!newHousing.city ||
+			!newHousing.description ||
+			!newHousing.phone
+		) {
+			alert('Пожалуйста, заполните все обязательные поля!')
+			return
+		}
+
+		const housingToAdd = {
+			id: Date.now(),
+			title: newHousing.title,
+			country: newHousing.country,
+			city: newHousing.city,
+			description: newHousing.description,
+			price: newHousing.price ? newHousing.price : 'Цена не указана',
+			phone: newHousing.phone,
+			author: { name: 'Вы (Автор)', avatar: defaultAvatar },
+			// Если фото выбрано (ссылка есть), используем его. Если нет — ставим заглушку.
+			images: [
+				newHousing.image ||
+					'https://i.pinimg.com/736x/ee/cc/ea/eeccea7c95bd8526d3716bb93406c9a3.jpg',
+			],
+		}
+
+		setAllHousings([housingToAdd, ...allHousings])
+
+		// Очищаем форму
+		setNewHousing({
+			title: '',
+			country: '',
+			city: '',
+			description: '',
+			price: '',
+			phone: '',
+			image: '',
+		})
+		alert('Объявление успешно добавлено!')
+	}
+
+	// ... остальной JSX (форма и список) остается без изменений
 
 	return (
 		<div className='housing-page'>
@@ -150,8 +210,117 @@ const Housing = ({ onSelectHousing }) => {
 					)}
 				</div>
 			)}
+			
+				{/* форма добавления жилья */}
+      <form className="add-housing-form" onSubmit={handleAddHousing}>
+        <h2 className="add-housing-form__title">Сдать свое жилье</h2>
+        
+        <div className="add-housing-form__grid">
+          {/* Поле: Заголовок */}
+          <div className="add-housing-form__group add-housing-form__full">
+            <label className="add-housing-form__label">Заголовок объявления *</label>
+            <input 
+              type="text" 
+              name="title" 
+              className="add-housing-form__input" 
+              placeholder="Уютная квартира у моря" 
+              value={newHousing.title}
+              onChange={handleFormChange}
+            />
+          </div>
+ 
+          {/* Поле: Страна */}
+          <div className="add-housing-form__group">
+            <label className="add-housing-form__label">Страна *</label>
+            <input 
+              type="text" 
+              name="country" 
+              className="add-housing-form__input" 
+              placeholder="Россия" 
+              value={newHousing.country}
+              onChange={handleFormChange}
+            />
+          </div>
+ 
+          {/* Поле: Город */}
+          <div className="add-housing-form__group">
+            <label className="add-housing-form__label">Город *</label>
+            <input 
+              type="text" 
+              name="city" 
+              className="add-housing-form__input" 
+              placeholder="Сочи" 
+              value={newHousing.city}
+              onChange={handleFormChange}
+            />
+          </div>
+ 
+          {/* Поле: Описание */}
+          <div className="add-housing-form__group add-housing-form__full">
+            <label className="add-housing-form__label">Описание *</label>
+            <textarea 
+              name="description" 
+              className="add-housing-form__textarea" 
+              placeholder="Опишите условия проживания..."
+              value={newHousing.description}
+              onChange={handleFormChange}
+            ></textarea>
+          </div>
+ 
+          {/* Поле: Цена */}
+          <div className="add-housing-form__group">
+            <label className="add-housing-form__label">Цена (оставьте пустым, если FREE)</label>
+            <input 
+              type="text" 
+              name="price" 
+              className="add-housing-form__input" 
+              placeholder="3000 ₽ / ночь" 
+              value={newHousing.price}
+              onChange={handleFormChange}
+            />
+          </div>
+ 
+          {/* Поле: Телефон */}
+          <div className="add-housing-form__group">
+            <label className="add-housing-form__label">Номер телефона *</label>
+            <input 
+              type="tel" 
+              name="phone" 
+              className="add-housing-form__input" 
+              placeholder="+7 999 123-45-67" 
+              value={newHousing.phone}
+              onChange={handleFormChange}
+            />
+          </div>
+ 
+          {/* Поле: Фото */}
+          <div className="add-housing-form__group add-housing-form__full">
+            <label className="add-housing-form__label">Прикрепить фото</label>
+            <input 
+              type="file" 
+              accept="image/*"
+              className="add-housing-form__file" 
+              onChange={handleImageChange}
+            />
+            {/* Превью картинки */}
+            {newHousing.image && (
+              <img 
+                src={newHousing.image} 
+                alt="Превью" 
+                style={{ width: '100px', height: '100px', objectFit: 'cover', marginTop: '10px', borderRadius: '8px' }} 
+              />
+            )}
+          </div>
+        </div>
+ 
+        <button type="submit" className="add-housing-form__btn">
+          Опубликовать объявление
+        </button>
+      </form>
+
+				
 		</div>
-	)
-}
+	);
+};
 
 export default Housing

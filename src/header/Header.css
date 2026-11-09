@@ -53,12 +53,12 @@
 }
  
 .header-nav-item:hover {
-  color: #0f172a;
+  color: #c60014;
 }
  
 /* Активный пункт (Главная) */
 .header-nav-item--active {
-  color: #0f172a;
+  color: #c60014;
   font-weight: 700;
 }
  
@@ -78,30 +78,7 @@
   align-items: center;
   gap: 20px;
 }
-  
-/* Кнопка Start Your Journey */
-.header-btn {
-  padding: 12px 24px;
-  margin-left: 15px;
-  background-color: #facc15; 
-  color: #0f172a;
-  border: none;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
-  white-space: nowrap;
-}
- 
-.header-btn:hover {
-  background-color: #facc15; /* Темнее желтый */
-  transform: translateY(-2px);
-}
- 
-.header-btn:active {
-  transform: translateY(0);
-}
+
  
 /* Адаптивность для звонильников */
 @media (max-width: 700px) {
